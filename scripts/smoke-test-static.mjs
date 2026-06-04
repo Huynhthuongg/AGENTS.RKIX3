@@ -13,6 +13,10 @@ function assert(condition, message) {
 assert(html.includes('<!DOCTYPE html>'), 'index.html must declare an HTML doctype.');
 assert(html.includes('<section id="home"'), 'index.html must include the home route container.');
 assert(html.includes('<section id="ai"'), 'index.html must include the AI workspace route container.');
+assert(html.includes('<section id="workspace"'), 'index.html must include the workspace route container.');
+assert(html.includes('<section id="code"'), 'index.html must include the code route container.');
+assert(html.includes('<section id="profile"'), 'index.html must include the profile route container.');
+assert(html.includes('overflow-x: clip') || html.includes('overflow-x: hidden'), 'Mobile layout must explicitly prevent horizontal overflow.');
 assert(html.includes('id="chatInput"'), 'AI workspace must expose the chat input.');
 assert(html.includes('id="sendChat"'), 'AI workspace must expose the send button.');
 assert(html.includes('esc(m.text)'), 'Chat messages must be escaped before rendering into innerHTML.');
