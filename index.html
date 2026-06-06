@@ -46,6 +46,206 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+
+        /* ========== MiniRkx Floating Button Styles ========== */
+        .minirkx-button {
+            position: fixed;
+            bottom: 32px;
+            right: 32px;
+            width: 72px;
+            height: 72px;
+            border-radius: 18px;
+            background: linear-gradient(135deg, #0052cc 0%, #00d2ff 100%);
+            border: 2px solid rgba(0, 210, 255, 0.4);
+            z-index: 35;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 0 24px rgba(0, 210, 255, 0.3), 0 8px 32px rgba(0, 82, 204, 0.2);
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .minirkx-button:hover {
+            transform: scale(1.08);
+            box-shadow: 0 0 32px rgba(0, 210, 255, 0.5), 0 12px 48px rgba(0, 82, 204, 0.3);
+            border-color: rgba(0, 210, 255, 0.6);
+        }
+
+        .minirkx-button:active {
+            transform: scale(0.95);
+        }
+
+        .minirkx-button.open {
+            transform: rotate(45deg);
+        }
+
+        .minirkx-logo {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .minirkx-logo svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.4));
+        }
+
+        /* Pulsing glow animation */
+        @keyframes minirkx-pulse-glow {
+            0%, 100% {
+                box-shadow: 0 0 24px rgba(0, 210, 255, 0.3), 0 8px 32px rgba(0, 82, 204, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 36px rgba(0, 210, 255, 0.5), 0 12px 48px rgba(0, 82, 204, 0.35);
+            }
+        }
+
+        .minirkx-button.pulse {
+            animation: minirkx-pulse-glow 2s ease-in-out infinite;
+        }
+
+        /* ========== Honeycomb Menu ========== */
+        .minirkx-menu {
+            position: fixed;
+            inset: 0;
+            z-index: 30;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .minirkx-menu.open {
+            pointer-events: auto;
+            opacity: 1;
+        }
+
+        .minirkx-menu-backdrop {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0);
+            transition: background 0.3s ease;
+            cursor: pointer;
+        }
+
+        .minirkx-menu.open .minirkx-menu-backdrop {
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .minirkx-honeycomb {
+            position: absolute;
+            bottom: 32px;
+            right: 32px;
+            width: 360px;
+            height: 360px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .minirkx-hex-item {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            transform: scale(0) translate(0, 0);
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        .minirkx-menu.open .minirkx-hex-item {
+            opacity: 1;
+            transform: scale(1) translate(var(--tx), var(--ty));
+        }
+
+        .minirkx-hex-item:nth-child(1) { --tx: 0px; --ty: -90px; transition-delay: 0.05s; }
+        .minirkx-hex-item:nth-child(2) { --tx: 78px; --ty: -45px; transition-delay: 0.1s; }
+        .minirkx-hex-item:nth-child(3) { --tx: 78px; --ty: 45px; transition-delay: 0.15s; }
+        .minirkx-hex-item:nth-child(4) { --tx: 0px; --ty: 90px; transition-delay: 0.2s; }
+        .minirkx-hex-item:nth-child(5) { --tx: -78px; --ty: 45px; transition-delay: 0.25s; }
+        .minirkx-hex-item:nth-child(6) { --tx: -78px; --ty: -45px; transition-delay: 0.3s; }
+
+        .minirkx-hex-content {
+            width: 100%;
+            height: 100%;
+            border-radius: 12px;
+            background: linear-gradient(135deg, rgba(0, 82, 204, 0.8) 0%, rgba(0, 210, 255, 0.8) 100%);
+            border: 2px solid rgba(0, 210, 255, 0.4);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 16px rgba(0, 82, 204, 0.2);
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .minirkx-hex-item:hover .minirkx-hex-content {
+            transform: scale(1.12);
+            border-color: rgba(0, 210, 255, 0.8);
+            box-shadow: 0 8px 32px rgba(0, 210, 255, 0.4);
+            background: linear-gradient(135deg, rgba(0, 82, 204, 1) 0%, rgba(0, 210, 255, 1) 100%);
+        }
+
+        .minirkx-hex-icon {
+            font-size: 24px;
+            line-height: 1;
+        }
+
+        .minirkx-hex-label {
+            font-size: 10px;
+            font-weight: 700;
+            color: white;
+            text-align: center;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .minirkx-button {
+                width: 64px;
+                height: 64px;
+                bottom: 24px;
+                right: 24px;
+            }
+
+            .minirkx-honeycomb {
+                width: 280px;
+                height: 280px;
+                bottom: 24px;
+                right: 24px;
+            }
+
+            .minirkx-hex-item:nth-child(1) { --tx: 0px; --ty: -70px; }
+            .minirkx-hex-item:nth-child(2) { --tx: 60px; --ty: -35px; }
+            .minirkx-hex-item:nth-child(3) { --tx: 60px; --ty: 35px; }
+            .minirkx-hex-item:nth-child(4) { --tx: 0px; --ty: 70px; }
+            .minirkx-hex-item:nth-child(5) { --tx: -60px; --ty: 35px; }
+            .minirkx-hex-item:nth-child(6) { --tx: -60px; --ty: -35px; }
+
+            .minirkx-hex-content {
+                width: 72px;
+                height: 72px;
+            }
+
+            .minirkx-hex-icon {
+                font-size: 20px;
+            }
+
+            .minirkx-hex-label {
+                font-size: 9px;
+            }
+        }
     </style>
 </head>
 <body class="text-zinc-200 min-h-screen flex flex-col overflow-x-hidden relative select-none">
@@ -474,7 +674,7 @@
                 }
 
                 const data = await response.json();
-return data.candidates?.[0]?.content?.parts?.[0]?.text || "";
+                return data.candidates?.[0]?.content?.parts?.[0]?.text;
             };
 
             while (attempts < maxAttempts) {
@@ -610,6 +810,132 @@ return data.candidates?.[0]?.content?.parts?.[0]?.text || "";
             }
             lucide.createIcons();
         }
+
+        /* ========== MiniRkx Floating Navigation ========== */
+        let minirkxMenuOpen = false;
+
+        function toggleMiniRkxMenu() {
+            const menu = document.getElementById('minirkxMenu');
+            const button = document.getElementById('minirkxButton');
+            
+            minirkxMenuOpen = !minirkxMenuOpen;
+            
+            if (minirkxMenuOpen) {
+                menu.classList.add('open');
+                button.classList.add('open');
+            } else {
+                menu.classList.remove('open');
+                button.classList.remove('open');
+            }
+        }
+
+        function closeMiniRkxMenu() {
+            const menu = document.getElementById('minirkxMenu');
+            const button = document.getElementById('minirkxButton');
+            minirkxMenuOpen = false;
+            menu.classList.remove('open');
+            button.classList.remove('open');
+        }
+
+        function minirkxNavClick(action) {
+            closeMiniRkxMenu();
+            menuCommand(action);
+        }
+
+        // Close menu when backdrop is clicked
+        document.addEventListener('click', function(e) {
+            const minirkxBtn = document.getElementById('minirkxButton');
+            const minirkxMenu = document.getElementById('minirkxMenu');
+            
+            if (!minirkxBtn?.contains(e.target) && !minirkxMenu?.contains(e.target)) {
+                if (minirkxMenuOpen) {
+                    closeMiniRkxMenu();
+                }
+            }
+        });
     </script>
+
+    <!-- ========================================== -->
+    <!-- MINIRKX FLOATING NAVIGATION BUTTON         -->
+    <!-- ========================================== -->
+    <button id="minirkxButton" class="minirkx-button pulse" onclick="toggleMiniRkxMenu()" title="Mở menu điều hướng">
+        <div class="minirkx-logo">
+            <!-- Biểu tượng RKIX3 được tạo SVG (hình vuông với hiệu ứng công nghệ) -->
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Khung vuông chính -->
+                <rect x="15" y="15" width="70" height="70" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Các đường công nghệ cắt góc -->
+                <path d="M 15 30 L 25 15" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M 85 15 L 75 30" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M 85 70 L 75 85" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <path d="M 25 85 L 15 70" stroke="white" stroke-width="2" stroke-linecap="round"/>
+                <!-- Chấm công nghệ ở góc -->
+                <circle cx="18" cy="18" r="3" fill="white" opacity="0.8"/>
+                <circle cx="82" cy="18" r="3" fill="white" opacity="0.8"/>
+                <circle cx="82" cy="82" r="3" fill="white" opacity="0.8"/>
+                <circle cx="18" cy="82" r="3" fill="white" opacity="0.8"/>
+                <!-- Đường gạch ngang giữa (biểu tượng RK) -->
+                <line x1="30" y1="50" x2="70" y2="50" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.9"/>
+            </svg>
+        </div>
+    </button>
+
+    <!-- ========================================== -->
+    <!-- MINIRKX HONEYCOMB MENU (TỔ ONG)            -->
+    <!-- ========================================== -->
+    <div id="minirkxMenu" class="minirkx-menu">
+        <div class="minirkx-menu-backdrop" onclick="closeMiniRkxMenu()"></div>
+        
+        <div class="minirkx-honeycomb">
+            <!-- 1. Trang chủ -->
+            <div class="minirkx-hex-item" onclick="minirkxNavClick('Trang chủ'); goHome();">
+                <div class="minirkx-hex-content">
+                    <div class="minirkx-hex-icon">🏠</div>
+                    <div class="minirkx-hex-label">Trang chủ</div>
+                </div>
+            </div>
+
+            <!-- 2. Thư viện -->
+            <div class="minirkx-hex-item" onclick="minirkxNavClick('Thư viện')">
+                <div class="minirkx-hex-content">
+                    <div class="minirkx-hex-icon">📚</div>
+                    <div class="minirkx-hex-label">Thư viện</div>
+                </div>
+            </div>
+
+            <!-- 3. Dự án -->
+            <div class="minirkx-hex-item" onclick="minirkxNavClick('Dự án')">
+                <div class="minirkx-hex-content">
+                    <div class="minirkx-hex-icon">📂</div>
+                    <div class="minirkx-hex-label">Dự án</div>
+                </div>
+            </div>
+
+            <!-- 4. Ứng dụng -->
+            <div class="minirkx-hex-item" onclick="minirkxNavClick('Ứng dụng')">
+                <div class="minirkx-hex-content">
+                    <div class="minirkx-hex-icon">⚙️</div>
+                    <div class="minirkx-hex-label">Ứng dụng</div>
+                </div>
+            </div>
+
+            <!-- 5. Codex -->
+            <div class="minirkx-hex-item" onclick="minirkxNavClick('Codex')">
+                <div class="minirkx-hex-content">
+                    <div class="minirkx-hex-icon">💻</div>
+                    <div class="minirkx-hex-label">Codex</div>
+                </div>
+            </div>
+
+            <!-- 6. Cài đặt -->
+            <div class="minirkx-hex-item" onclick="minirkxNavClick('Cài đặt'); toggleApiSettingsModal()">
+                <div class="minirkx-hex-content">
+                    <div class="minirkx-hex-icon">🔧</div>
+                    <div class="minirkx-hex-label">Cài đặt</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
