@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/react'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
 import MainContent from './components/MainContent'
@@ -14,7 +15,7 @@ export default function App() {
   const [showApiModal, setShowApiModal] = useState(false)
   const [prompt, setPrompt] = useState('')
   const [isRecording, setIsRecording] = useState(false)
-  const [currentPage, setCurrentPage] = useState('home')
+  const [_currentPage, setCurrentPage] = useState('home')
 
   const handleMenuCommand = (command: string) => {
     console.log(`[v0] Menu command: ${command}`)
@@ -86,6 +87,7 @@ export default function App() {
 
       {/* Vercel Web Analytics */}
       <Analytics />
+      <SpeedInsights />
     </div>
   )
 }
